@@ -17,19 +17,6 @@ function App() {
     }, [tasks]);
 
     useEffect(() => {
-        const fetchTasks = async () => {
-            // chamando API
-            const response = await fetch(
-                "https://jsonplaceholder.typicode.com/todos?_limit=10",
-                { method: "GET" }
-            );
-            // Pegar os dados da api e colocando num json
-            const data = await response.json();
-
-            // Salvar os dados puxados no state
-            setTasks(data);
-            console.log(data);
-        };
         // Chamando a função que chama a API para importar as tasks
         // fetchTasks();
     }, []);
