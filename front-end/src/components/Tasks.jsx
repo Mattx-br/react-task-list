@@ -2,10 +2,10 @@
 // Para rodar o app, digite no terminal
 // > npm run dev
 
-import { Check, ChevronRightIcon, TrashIcon } from "lucide-react";
+import { Check, ChevronRightIcon, Pencil, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
+function Tasks({ tasks, onTaskClick, deleteTaskClick, updateTaskClick }) {
     const navigate = useNavigate();
 
     function onSeeDetailsClick(task) {
@@ -22,7 +22,7 @@ function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
         >
             {tasks.map((task) => (
                 <li key={task.id} className="flex gap-2 display-full">
-                    <li
+                    <h1
                         name="btn_title"
                         onClick={() => onTaskClick(task.id)}
                         className={`flex gap-2 bg-slate-700 w-full p-2 rounded-md text-white ${
@@ -33,9 +33,20 @@ function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
                         {/* titulo da task */}
                         {task.title}
                         {task.isCompleted && <Check />}
-                    </li>
+                    </h1>
                     <Button onClick={() => onSeeDetailsClick(task)}>
                         <ChevronRightIcon />
+                    </Button>
+                    <Button
+                        onClick={() =>
+                            updateTaskClick(
+                                task.id,
+                                task.title,
+                                task.description
+                            )
+                        }
+                    >
+                        <Pencil />
                     </Button>
                     <Button onClick={() => deleteTaskClick(task.id)}>
                         <TrashIcon />

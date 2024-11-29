@@ -1,10 +1,15 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Input from "./Input";
 
 function AddTask({ addTaskClick }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    // const inputTitle = forwardRef();
+    // const inputDescription = forwardRef();
+    const inputTitle = useRef(null);
+    const inputDescription = useRef(null);
+    // const inputIsCompleted = useRef();
 
     return (
         <div className="bg-slate-200 rounded-md p-6 flex flex-col space-y-2">
@@ -14,6 +19,7 @@ function AddTask({ addTaskClick }) {
                 value={title}
                 placeholder="type the task title"
                 onChange={(event) => setTitle(event.target.value)}
+                ref={inputTitle}
             />
             <Input
                 type="text"
@@ -21,6 +27,7 @@ function AddTask({ addTaskClick }) {
                 value={description}
                 placeholder="type the task description"
                 onChange={(event) => setDescription(event.target.value)}
+                ref={inputDescription}
             />
             <button
                 onClick={() => {
