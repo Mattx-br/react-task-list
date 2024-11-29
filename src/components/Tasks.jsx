@@ -2,7 +2,7 @@
 // Para rodar o app, digite no terminal
 // > npm run dev
 
-import { ChevronRightIcon, TrashIcon } from "lucide-react";
+import { Check, ChevronRightIcon, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
@@ -25,12 +25,14 @@ function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
                     <li
                         name="btn_title"
                         onClick={() => onTaskClick(task.id)}
-                        className={`bg-slate-700 w-full p-2 rounded-md text-white ${
+                        className={`flex gap-2 bg-slate-700 w-full p-2 rounded-md text-white ${
                             task.isCompleted &&
                             "line-through font-bold font-style: italic"
                         }`}
                     >
+                        {/* titulo da task */}
                         {task.title}
+                        {task.isCompleted && <Check />}
                     </li>
                     <Button onClick={() => onSeeDetailsClick(task)}>
                         <ChevronRightIcon />
