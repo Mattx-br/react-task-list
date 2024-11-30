@@ -19,7 +19,7 @@ function App() {
         getTasks_fromDB();
     }, []);
 
-    // UPDATE
+    // muda o front
     function onTaskClick(taskId) {
         const newTasks = tasks.map((task) => {
             // Preciso atualizar essa tarefa
@@ -40,6 +40,8 @@ function App() {
         // return setTasks(newTasks);
         getTasks_fromDB();
     }
+
+    
 
     // UPDATE
     async function updateTaskClick(taskId, title, description) {

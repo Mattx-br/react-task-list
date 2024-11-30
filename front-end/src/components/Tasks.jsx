@@ -5,15 +5,28 @@
 import { Check, ChevronRightIcon, Pencil, TrashIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-function Tasks({ tasks, onTaskClick, deleteTaskClick, updateTaskClick }) {
+// import api from "../services/api";
+
+function Tasks({ tasks, onTaskClick, deleteTaskClick }) {
     const navigate = useNavigate();
 
     function onSeeDetailsClick(task) {
         const query = new URLSearchParams();
         query.set("title", task.title);
         query.set("description", task.description);
+
         navigate(`/task?${query.toString()}`);
     }
+
+    async function updateTaskClick(task) {
+        const query = new URLSearchParams();
+        query.set("title", task.title);
+        query.set("description", task.description);
+        query.set("id", task.id);
+
+        navigate(`/edit/?${query.toString()}`);
+    }
+
     return (
         <ul
             className={`space-y-2 bg-slate-200 p-6 rounded-md shadow ${
@@ -34,20 +47,18 @@ function Tasks({ tasks, onTaskClick, deleteTaskClick, updateTaskClick }) {
                         {task.title}
                         {task.isCompleted && <Check />}
                     </h1>
+
+                    {/* Botão de detalhes */}
                     <Button onClick={() => onSeeDetailsClick(task)}>
                         <ChevronRightIcon />
                     </Button>
-                    <Button
-                        onClick={() =>
-                            updateTaskClick(
-                                task.id,
-                                task.title,
-                                task.description
-                            )
-                        }
-                    >
+
+                    {/* Botão de editar */}
+                    <Button onClick={() => updateTaskClick(task)}>
                         <Pencil />
                     </Button>
+
+                    {/* botão de deletar */}
                     <Button onClick={() => deleteTaskClick(task.id)}>
                         <TrashIcon />
                     </Button>
